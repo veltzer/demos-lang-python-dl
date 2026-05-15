@@ -10,7 +10,6 @@ src_dirs = ["src", "config"]
 [processor.zspell]
 src_dirs = ["src", "notes"]
 src_extensions = [".md"]
-auto_add_words = true
 
 [processor.requirements]
 src_dirs = ["src", "config"]
