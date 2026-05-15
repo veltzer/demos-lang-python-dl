@@ -1,0 +1,33 @@
+[processor.ruff]
+src_dirs = ["src", "config"]
+
+[processor.mypy]
+src_dirs = ["src", "config"]
+
+[processor.pylint]
+src_dirs = ["src", "config"]
+
+[processor.zspell]
+src_dirs = ["src", "notes"]
+src_extensions = [".md"]
+auto_add_words = true
+
+[processor.requirements]
+src_dirs = ["src", "config"]
+# manim-voiceover does `import pkg_resources` at module top level, which
+# lives in setuptools. setuptools is no longer bundled on Python 3.12+,
+# and manim-voiceover's metadata does not declare it. Static AST scanning
+# can't see that, so we list it here.
+extra = ["setuptools"]
+# Modules in shared/shared-themes/ are imported by animations and scripts
+# because that directory is added to sys.path at runtime. Declare it as a
+# Python source root so the requirements generator doesn't classify
+# `manim_themes` (which lives at shared/shared-themes/manim_themes.py) as
+# a PyPI distribution.
+python_paths = []
+
+[analyzer.python]
+
+[analyzer.tera]
+
+[processor.tera]

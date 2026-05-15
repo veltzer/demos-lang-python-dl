@@ -1,0 +1,3 @@
+## Number of exercises
+
+Currently there are {{ git_count_files(pattern="src/**/*.md") }} exercises in this repo.
