@@ -72,3 +72,12 @@ def test_06_map_tokenize():
     mod = load("src/05_transfer_learning/06_map_tokenize.py")
     _ds, keys = mod.main()
     assert "input_ids" in keys
+
+
+def test_07_finetune_head():
+    mod = load("src/05_transfer_learning/07_finetune_head.py")
+    losses, backbone_frozen = mod.main()
+    assert backbone_frozen
+    assert len(losses) == 5
+    # head should actually learn something — final loss < initial
+    assert losses[-1] < losses[0]

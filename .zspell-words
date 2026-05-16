@@ -188,3 +188,9 @@ upsampling
 vae
 vectorizes
 vmap
+Backpropagation
+ReLU
+DistilBERT
+SST
+pretrain
+pretrained

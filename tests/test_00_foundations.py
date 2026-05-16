@@ -86,6 +86,13 @@ def test_grad_of_grad() -> None:
 
 
 
+def test_manual_backprop() -> None:
+    mod = _load("src/00_foundations/16_manual_backprop.py")
+    ok_w1, ok_b1, ok_w2, ok_b2 = mod.main()
+    # All four hand-derived gradients must match autograd's
+    assert ok_w1 and ok_b1 and ok_w2 and ok_b2
+
+
 def test_linear_layer() -> None:
     mod = _load("src/00_foundations/08_linear_layer.py")
     layer, y = mod.main()
@@ -158,14 +165,14 @@ def test_train_eval_mode() -> None:
 
 
 def test_sgd_minimize() -> None:
-    mod = _load("src/00_foundations/16_sgd_minimize.py")
+    mod = _load("src/00_foundations/17_sgd_minimize.py")
     val = mod.main()
     # Should converge close to 7
     assert abs(val - 7.0) < 1e-3
 
 
 def test_adam_minimize() -> None:
-    mod = _load("src/00_foundations/17_adam_minimize.py")
+    mod = _load("src/00_foundations/18_adam_minimize.py")
     p = mod.main()
     # Should converge near (3, -4)
     assert abs(p[0].item() - 3.0) < 0.05
@@ -173,14 +180,14 @@ def test_adam_minimize() -> None:
 
 
 def test_momentum() -> None:
-    mod = _load("src/00_foundations/18_momentum.py")
+    mod = _load("src/00_foundations/19_momentum.py")
     plain, momentum = mod.main()
     assert not math.isnan(plain)
     assert not math.isnan(momentum)
 
 
 def test_lr_scheduler() -> None:
-    mod = _load("src/00_foundations/19_lr_scheduler.py")
+    mod = _load("src/00_foundations/20_lr_scheduler.py")
     lrs = mod.main()
     assert len(lrs) == 20
     # lr starts 0.1, halves every 5 steps
@@ -193,7 +200,7 @@ def test_lr_scheduler() -> None:
 
 
 def test_linear_regression() -> None:
-    mod = _load("src/00_foundations/20_linear_regression.py")
+    mod = _load("src/00_foundations/21_linear_regression.py")
     w, b = mod.main()
     # True w=2, b=1; with noise we allow some tolerance
     assert abs(w - 2.0) < 0.1
@@ -201,7 +208,7 @@ def test_linear_regression() -> None:
 
 
 def test_minibatch() -> None:
-    mod = _load("src/00_foundations/21_minibatch.py")
+    mod = _load("src/00_foundations/22_minibatch.py")
     w, b = mod.main()
     # True w=2, b=1; minibatch should still get reasonably close
     assert abs(w - 2.0) < 0.2
@@ -209,7 +216,7 @@ def test_minibatch() -> None:
 
 
 def test_weight_decay() -> None:
-    mod = _load("src/00_foundations/22_weight_decay.py")
+    mod = _load("src/00_foundations/23_weight_decay.py")
     no_decay, with_decay = mod.main()
     # Both should still be in a reasonable neighbourhood of the true slope (2.0).
     # weight_decay biases toward zero but with this data/seed both end up near 2.
@@ -219,7 +226,7 @@ def test_weight_decay() -> None:
 
 
 def test_00_dropout():
-    mod = load("src/00_foundations/23_dropout.py")
+    mod = load("src/00_foundations/24_dropout.py")
     t1, t2, e1, e2 = mod.main()
     # Train mode is stochastic -> outputs differ; eval mode is deterministic.
     assert not torch.allclose(t1, t2)
@@ -227,28 +234,28 @@ def test_00_dropout():
 
 
 def test_01_layernorm():
-    mod = load("src/00_foundations/24_layernorm.py")
+    mod = load("src/00_foundations/25_layernorm.py")
     means, stds = mod.main()
     assert torch.allclose(means, torch.zeros_like(means), atol=1e-5)
     assert torch.allclose(stds, torch.ones_like(stds), atol=1e-4)
 
 
 def test_02_grad_clipping():
-    mod = load("src/00_foundations/25_grad_clipping.py")
+    mod = load("src/00_foundations/26_grad_clipping.py")
     before, after = mod.main()
     assert before > 1e5
     assert after == pytest.approx(1.0, abs=1e-5)
 
 
 def test_03_early_stopping():
-    mod = load("src/00_foundations/26_early_stopping.py")
+    mod = load("src/00_foundations/27_early_stopping.py")
     stopped_at, best = mod.main()
     assert stopped_at > 0
     assert best < float("inf")
 
 
 def test_04_weight_init():
-    mod = load("src/00_foundations/27_weight_init.py")
+    mod = load("src/00_foundations/28_weight_init.py")
     results = mod.main()
     assert set(results) == {"normal(0, 0.01)", "xavier_normal", "kaiming_normal"}
     # normal(0, 0.01) should produce std ~0.01
@@ -260,14 +267,14 @@ def test_04_weight_init():
 
 
 def test_05_overfit_small_batch():
-    mod = load("src/00_foundations/28_overfit_small_batch.py")
+    mod = load("src/00_foundations/29_overfit_small_batch.py")
     final_loss = mod.main()
     # Should drive loss near zero on 8 samples
     assert final_loss < 0.05
 
 
 def test_06_label_smoothing():
-    mod = load("src/00_foundations/29_label_smoothing.py")
+    mod = load("src/00_foundations/30_label_smoothing.py")
     plain, smooth = mod.main()
     # Label smoothing raises the loss on a confident-correct prediction
     assert smooth.item() > plain.item()
