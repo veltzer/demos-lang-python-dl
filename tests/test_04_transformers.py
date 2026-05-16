@@ -19,13 +19,13 @@ def _load(path: str) -> ModuleType:
 
 
 def test_scaled_dot_product() -> None:
-    mod = _load("src/06_transformers/00_scaled_dot_product.py")
+    mod = _load("src/04_transformers/00_scaled_dot_product.py")
     out = mod.main()
     assert tuple(out.shape) == (2, 4, 8)
 
 
 def test_multihead_attention() -> None:
-    mod = _load("src/06_transformers/01_multihead_attention.py")
+    mod = _load("src/04_transformers/01_multihead_attention.py")
     out, weights = mod.main()
     assert tuple(out.shape) == (2, 6, 16)
     # averaged attention weights over heads: (batch, seq, seq)
@@ -33,7 +33,7 @@ def test_multihead_attention() -> None:
 
 
 def test_causal_mask() -> None:
-    mod = _load("src/06_transformers/02_causal_mask.py")
+    mod = _load("src/04_transformers/02_causal_mask.py")
     weights = mod.main()
     # weights shape: (1, 4, 4)
     assert tuple(weights.shape) == (1, 4, 4)
@@ -47,7 +47,7 @@ def test_causal_mask() -> None:
 
 
 def test_positional_encoding() -> None:
-    mod = _load("src/06_transformers/03_positional_encoding.py")
+    mod = _load("src/04_transformers/03_positional_encoding.py")
     pe = mod.main()
     assert tuple(pe.shape) == (20, 16)
     # position 0: sin(0) = 0 on even indices, cos(0) = 1 on odd indices
@@ -56,19 +56,19 @@ def test_positional_encoding() -> None:
 
 
 def test_encoder_layer() -> None:
-    mod = _load("src/06_transformers/04_encoder_layer.py")
+    mod = _load("src/04_transformers/04_encoder_layer.py")
     out = mod.main()
     assert tuple(out.shape) == (3, 8, 16)
 
 
 def test_encoder_stack() -> None:
-    mod = _load("src/06_transformers/05_encoder_stack.py")
+    mod = _load("src/04_transformers/05_encoder_stack.py")
     out = mod.main()
     assert tuple(out.shape) == (3, 8, 16)
 
 
 def test_tiny_lm() -> None:
-    mod = _load("src/06_transformers/06_tiny_lm.py")
+    mod = _load("src/04_transformers/06_tiny_lm.py")
     logits = mod.main()
     # batch=2, seq=10, vocab=50
     assert tuple(logits.shape) == (2, 10, 50)

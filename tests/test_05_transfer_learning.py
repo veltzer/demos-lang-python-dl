@@ -24,7 +24,7 @@ pytestmark = pytest.mark.network
 
 
 def test_00_sentiment_pipeline():
-    mod = load("src/10_huggingface/00_sentiment_pipeline.py")
+    mod = load("src/05_transfer_learning/00_sentiment_pipeline.py")
     results = mod.main()
     assert len(results) == 2
     for _text, out in results:
@@ -33,7 +33,7 @@ def test_00_sentiment_pipeline():
 
 
 def test_01_zero_shot():
-    mod = load("src/10_huggingface/01_zero_shot.py")
+    mod = load("src/05_transfer_learning/01_zero_shot.py")
     out = mod.main()
     assert "labels" in out
     assert "scores" in out
@@ -41,7 +41,7 @@ def test_01_zero_shot():
 
 
 def test_02_tokenizer():
-    mod = load("src/10_huggingface/02_tokenizer.py")
+    mod = load("src/05_transfer_learning/02_tokenizer.py")
     ids, tokens = mod.main()
     assert len(ids) == len(tokens)
     assert tokens[0] == "[CLS]"
@@ -49,26 +49,26 @@ def test_02_tokenizer():
 
 
 def test_03_automodel():
-    mod = load("src/10_huggingface/03_automodel.py")
+    mod = load("src/05_transfer_learning/03_automodel.py")
     h = mod.main()
     assert h.shape[0] == 1
     assert h.shape[-1] == 768  # bert-base hidden size
 
 
 def test_04_text_generation():
-    mod = load("src/10_huggingface/04_text_generation.py")
+    mod = load("src/05_transfer_learning/04_text_generation.py")
     out = mod.main()
     assert isinstance(out, list) and len(out) >= 1
     assert "generated_text" in out[0]
 
 
 def test_05_datasets_basic():
-    mod = load("src/10_huggingface/05_datasets_basic.py")
+    mod = load("src/05_transfer_learning/05_datasets_basic.py")
     ds = mod.main()
     assert "train" in ds
 
 
 def test_06_map_tokenize():
-    mod = load("src/10_huggingface/06_map_tokenize.py")
+    mod = load("src/05_transfer_learning/06_map_tokenize.py")
     _ds, keys = mod.main()
     assert "input_ids" in keys

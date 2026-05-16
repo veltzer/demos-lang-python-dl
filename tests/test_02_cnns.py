@@ -19,14 +19,14 @@ def _load(path: str) -> ModuleType:
 
 
 def test_conv2d_shape() -> None:
-    mod = _load("src/04_cnn/00_conv2d_shape.py")
+    mod = _load("src/02_cnns/00_conv2d_shape.py")
     shape = mod.main()
     # padding=1 with k=3 preserves spatial dims; 8 out channels
     assert tuple(shape) == (2, 8, 32, 32)
 
 
 def test_stride_padding() -> None:
-    mod = _load("src/04_cnn/01_stride_padding.py")
+    mod = _load("src/02_cnns/01_stride_padding.py")
     results = mod.main()
     assert len(results) == 4
     # Conv2d on 7x7 with k=3:
@@ -43,7 +43,7 @@ def test_stride_padding() -> None:
 
 
 def test_pooling() -> None:
-    mod = _load("src/04_cnn/02_pooling.py")
+    mod = _load("src/02_cnns/02_pooling.py")
     x, maxp, avgp = mod.main()
     assert tuple(x.shape) == (1, 1, 4, 4)
     assert tuple(maxp.shape) == (1, 1, 2, 2)
@@ -55,7 +55,7 @@ def test_pooling() -> None:
 
 
 def test_edge_detection() -> None:
-    mod = _load("src/04_cnn/03_edge_detection.py")
+    mod = _load("src/02_cnns/03_edge_detection.py")
     img, out = mod.main()
     assert tuple(img.shape) == (5, 5)
     assert tuple(out.shape) == (5, 5)
@@ -65,13 +65,13 @@ def test_edge_detection() -> None:
 
 
 def test_mnist_cnn() -> None:
-    mod = _load("src/04_cnn/04_mnist_cnn.py")
+    mod = _load("src/02_cnns/04_mnist_cnn.py")
     _model, y = mod.main()
     assert tuple(y.shape) == (4, 10)
 
 
 def test_batchnorm() -> None:
-    mod = _load("src/04_cnn/05_batchnorm.py")
+    mod = _load("src/02_cnns/05_batchnorm.py")
     mean, std = mod.main()
     # BN normalizes to ~zero mean, unit std per channel
     assert torch.allclose(mean, torch.zeros(4), atol=1e-5)
@@ -79,13 +79,13 @@ def test_batchnorm() -> None:
 
 
 def test_global_avg_pool() -> None:
-    mod = _load("src/04_cnn/06_global_avg_pool.py")
+    mod = _load("src/02_cnns/06_global_avg_pool.py")
     y = mod.main()
     assert tuple(y.shape) == (2, 16)
 
 
 def test_transpose_conv() -> None:
-    mod = _load("src/04_cnn/07_transpose_conv.py")
+    mod = _load("src/02_cnns/07_transpose_conv.py")
     y = mod.main()
     # kernel=2 stride=2 doubles spatial dims, 4 out channels
     assert tuple(y.shape) == (1, 4, 8, 8)
