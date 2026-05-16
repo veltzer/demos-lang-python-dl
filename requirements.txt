@@ -8,4 +8,5 @@ pytest
 setuptools
 tensorflow
 torch
+torchvision
 transformers

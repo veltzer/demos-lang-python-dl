@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
-"""Tests for src/04_cnn solutions."""
+"""Tests for src/02_cnns solutions."""
 
 import importlib.util
 from pathlib import Path
 from types import ModuleType
 
+import pytest
 import torch
 
 
@@ -70,8 +71,21 @@ def test_mnist_cnn() -> None:
     assert tuple(y.shape) == (4, 10)
 
 
+@pytest.mark.network
+def test_mnist_train() -> None:
+    mod = _load("src/02_cnns/05_mnist_train.py")
+    losses, test_acc = mod.main()
+    assert len(losses) == 3
+    # Loss should drop across epochs
+    assert losses[-1] < losses[0]
+    # Should beat random (10%) by a wide margin on real MNIST.
+    # At 2000 train examples + 3 epochs the model is still improving;
+    # 0.7 is a safe floor that catches a broken pipeline without flaking.
+    assert test_acc > 0.7
+
+
 def test_batchnorm() -> None:
-    mod = _load("src/02_cnns/05_batchnorm.py")
+    mod = _load("src/02_cnns/06_batchnorm.py")
     mean, std = mod.main()
     # BN normalizes to ~zero mean, unit std per channel
     assert torch.allclose(mean, torch.zeros(4), atol=1e-5)
@@ -79,13 +93,13 @@ def test_batchnorm() -> None:
 
 
 def test_global_avg_pool() -> None:
-    mod = _load("src/02_cnns/06_global_avg_pool.py")
+    mod = _load("src/02_cnns/07_global_avg_pool.py")
     y = mod.main()
     assert tuple(y.shape) == (2, 16)
 
 
 def test_transpose_conv() -> None:
-    mod = _load("src/02_cnns/07_transpose_conv.py")
+    mod = _load("src/02_cnns/08_transpose_conv.py")
     y = mod.main()
     # kernel=2 stride=2 doubles spatial dims, 4 out channels
     assert tuple(y.shape) == (1, 4, 8, 8)

@@ -8,7 +8,7 @@ src_dirs = ["src", "config", "tests"]
 src_dirs = ["src", "config", "tests"]
 
 [processor.zspell]
-src_dirs = ["src"]
+src_dirs = ["src", "notes"]
 src_extensions = [".md"]
 
 [processor.pytest]
