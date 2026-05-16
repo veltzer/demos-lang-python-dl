@@ -6,30 +6,41 @@ import torch
 from torch import nn
 from torch.utils.data import TensorDataset, DataLoader
 
-torch.manual_seed(0)
 
-n = 500
-x = torch.randn(n, 4)
-w = torch.randn(4, 3)
-y = (x @ w).argmax(dim=1)
+def main() -> tuple[nn.Module, float, float]:
+    torch.manual_seed(0)
 
-loader = DataLoader(TensorDataset(x, y), batch_size=32, shuffle=True)
+    n = 500
+    x = torch.randn(n, 4)
+    w = torch.randn(4, 3)
+    y = (x @ w).argmax(dim=1)
 
-model = nn.Sequential(nn.Linear(4, 32), nn.ReLU(), nn.Linear(32, 3))
-opt = torch.optim.Adam(model.parameters(), lr=0.01)
-loss_fn = nn.CrossEntropyLoss()
+    loader = DataLoader(TensorDataset(x, y), batch_size=32, shuffle=True)
 
-for epoch in range(10):
-    total_loss = 0.0
-    correct = 0
-    seen = 0
-    for xb, yb in loader:
-        logits = model(xb)
-        loss = loss_fn(logits, yb)
-        opt.zero_grad()
-        loss.backward()
-        opt.step()
-        total_loss += loss.item() * len(xb)
-        correct += (logits.argmax(dim=1) == yb).sum().item()
-        seen += len(xb)
-    print(f"epoch {epoch}: loss={total_loss / seen:.4f} acc={correct / seen:.4f}")
+    model = nn.Sequential(nn.Linear(4, 32), nn.ReLU(), nn.Linear(32, 3))
+    opt = torch.optim.Adam(model.parameters(), lr=0.01)
+    loss_fn = nn.CrossEntropyLoss()
+
+    final_loss = 0.0
+    final_acc = 0.0
+    for epoch in range(10):
+        total_loss = 0.0
+        correct = 0
+        seen = 0
+        for xb, yb in loader:
+            logits = model(xb)
+            loss = loss_fn(logits, yb)
+            opt.zero_grad()
+            loss.backward()
+            opt.step()
+            total_loss += loss.item() * len(xb)
+            correct += (logits.argmax(dim=1) == yb).sum().item()
+            seen += len(xb)
+        final_loss = total_loss / seen
+        final_acc = correct / seen
+        print(f"epoch {epoch}: loss={final_loss:.4f} acc={final_acc:.4f}")
+    return model, final_loss, final_acc
+
+
+if __name__ == "__main__":
+    main()

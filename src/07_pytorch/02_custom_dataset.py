@@ -17,8 +17,17 @@ class SquaresDataset(Dataset):
         return torch.tensor(idx), torch.tensor(idx * idx)
 
 
-loader = DataLoader(SquaresDataset(10), batch_size=2)
-for i, batch in enumerate(loader):
-    print(batch)
-    if i == 4:
-        break
+def main() -> tuple[SquaresDataset, list[tuple[torch.Tensor, torch.Tensor]]]:
+    ds = SquaresDataset(10)
+    loader = DataLoader(ds, batch_size=2)
+    batches: list[tuple[torch.Tensor, torch.Tensor]] = []
+    for i, batch in enumerate(loader):
+        print(batch)
+        batches.append(batch)
+        if i == 4:
+            break
+    return ds, batches
+
+
+if __name__ == "__main__":
+    main()

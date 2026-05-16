@@ -6,15 +6,23 @@ import tempfile
 import torch
 from torch import nn
 
-torch.manual_seed(0)
-m1 = nn.Linear(4, 2)
 
-with tempfile.NamedTemporaryFile(suffix=".pt", delete=False) as f:
-    path = f.name
-torch.save(m1.state_dict(), path)
+def main() -> bool:
+    torch.manual_seed(0)
+    m1 = nn.Linear(4, 2)
 
-m2 = nn.Linear(4, 2)
-m2.load_state_dict(torch.load(path))
+    with tempfile.NamedTemporaryFile(suffix=".pt", delete=False) as f:
+        path = f.name
+    torch.save(m1.state_dict(), path)
 
-x = torch.randn(1, 4)
-print(torch.allclose(m1(x), m2(x)))
+    m2 = nn.Linear(4, 2)
+    m2.load_state_dict(torch.load(path))
+
+    x = torch.randn(1, 4)
+    equal = torch.allclose(m1(x), m2(x))
+    print(equal)
+    return equal
+
+
+if __name__ == "__main__":
+    main()

@@ -5,15 +5,26 @@
 import torch
 from torch import nn
 
-torch.manual_seed(0)
 
-model = nn.Sequential(nn.Linear(4, 4), nn.Dropout(0.5))
-x = torch.ones(1, 4)
+def main() -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    torch.manual_seed(0)
 
-model.train()
-print(model(x))
-print(model(x))
+    model = nn.Sequential(nn.Linear(4, 4), nn.Dropout(0.5))
+    x = torch.ones(1, 4)
 
-model.eval()
-print(model(x))
-print(model(x))
+    model.train()
+    t1 = model(x)
+    print(t1)
+    t2 = model(x)
+    print(t2)
+
+    model.eval()
+    e1 = model(x)
+    print(e1)
+    e2 = model(x)
+    print(e2)
+    return t1, t2, e1, e2
+
+
+if __name__ == "__main__":
+    main()

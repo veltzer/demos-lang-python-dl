@@ -15,6 +15,12 @@ def positional_encoding(max_len: int, d: int) -> torch.Tensor:
     return table
 
 
-pe = positional_encoding(20, 16)
-print(pe.shape)
-print(pe[0])
+def main() -> torch.Tensor:
+    pe = positional_encoding(20, 16)
+    print(pe.shape)
+    print(pe[0])
+    return pe
+
+
+if __name__ == "__main__":
+    main()

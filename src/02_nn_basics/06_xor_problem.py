@@ -5,22 +5,29 @@
 import torch
 from torch import nn
 
-torch.manual_seed(0)
 
-x = torch.tensor([[0.0, 0.0], [0.0, 1.0], [1.0, 0.0], [1.0, 1.0]])
-y = torch.tensor([[0.0], [1.0], [1.0], [0.0]])
+def main() -> torch.Tensor:
+    torch.manual_seed(0)
 
-model = nn.Sequential(nn.Linear(2, 4), nn.Tanh(), nn.Linear(4, 1))
-opt = torch.optim.SGD(model.parameters(), lr=0.5)
-loss_fn = nn.BCEWithLogitsLoss()
+    x = torch.tensor([[0.0, 0.0], [0.0, 1.0], [1.0, 0.0], [1.0, 1.0]])
+    y = torch.tensor([[0.0], [1.0], [1.0], [0.0]])
 
-for _ in range(5000):
-    logits = model(x)
-    loss = loss_fn(logits, y)
-    opt.zero_grad()
-    loss.backward()
-    opt.step()
+    model = nn.Sequential(nn.Linear(2, 4), nn.Tanh(), nn.Linear(4, 1))
+    opt = torch.optim.SGD(model.parameters(), lr=0.5)
+    loss_fn = nn.BCEWithLogitsLoss()
 
-with torch.no_grad():
-    preds = torch.sigmoid(model(x)).round()
-print(preds.squeeze().tolist())
+    for _ in range(5000):
+        logits = model(x)
+        loss = loss_fn(logits, y)
+        opt.zero_grad()
+        loss.backward()
+        opt.step()
+
+    with torch.no_grad():
+        preds = torch.sigmoid(model(x)).round()
+    print(preds.squeeze().tolist())
+    return preds.squeeze()
+
+
+if __name__ == "__main__":
+    main()

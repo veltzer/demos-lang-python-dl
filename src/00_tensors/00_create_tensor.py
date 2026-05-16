@@ -4,7 +4,14 @@
 
 import torch
 
-t = torch.tensor([1, 2, 3, 4, 5])
-print(t)
-print(t.dtype)
-print(t.shape)
+
+def main() -> torch.Tensor:
+    t = torch.tensor([1, 2, 3, 4, 5])
+    print(t)
+    print(t.dtype)
+    print(t.shape)
+    return t
+
+
+if __name__ == "__main__":
+    main()

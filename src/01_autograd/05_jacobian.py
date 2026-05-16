@@ -10,5 +10,12 @@ def f(v: torch.Tensor) -> torch.Tensor:
     return torch.stack([v[0] ** 2, v[0] * v[1], v[1] ** 3])
 
 
-x = torch.tensor([2.0, 3.0])
-print(jacobian(f, x))
+def main() -> torch.Tensor:
+    x = torch.tensor([2.0, 3.0])
+    j = jacobian(f, x)
+    print(j)
+    return j
+
+
+if __name__ == "__main__":
+    main()

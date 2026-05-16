@@ -5,7 +5,6 @@
 import torch
 from torch import nn
 
-torch.manual_seed(0)
 
 T = 20
 alphas = torch.linspace(0.99, 0.05, T)
@@ -24,19 +23,28 @@ class EpsNet(nn.Module):
         return self.net(torch.cat([x_t, t_idx.float() / T], dim=1))
 
 
-model = EpsNet()
-opt = torch.optim.Adam(model.parameters(), lr=1e-3)
+def main() -> float:
+    torch.manual_seed(0)
+    model = EpsNet()
+    opt = torch.optim.Adam(model.parameters(), lr=1e-3)
 
-for step in range(2000):
-    x0 = torch.randn(128, 1) + 5
-    t = torch.randint(0, T, (128, 1))
-    a = alphas[t.squeeze()].unsqueeze(1)
-    eps = torch.randn_like(x0)
-    xt = torch.sqrt(a) * x0 + torch.sqrt(1 - a) * eps
+    loss = torch.tensor(0.0)
+    for _ in range(2000):
+        x0 = torch.randn(128, 1) + 5
+        t = torch.randint(0, T, (128, 1))
+        a = alphas[t.squeeze()].unsqueeze(1)
+        eps = torch.randn_like(x0)
+        xt = torch.sqrt(a) * x0 + torch.sqrt(1 - a) * eps
 
-    opt.zero_grad()
-    loss = ((model(xt, t) - eps) ** 2).mean()
-    loss.backward()
-    opt.step()
+        opt.zero_grad()
+        loss = ((model(xt, t) - eps) ** 2).mean()
+        loss.backward()
+        opt.step()
 
-print(loss.item())
+    final_loss = loss.item()
+    print(final_loss)
+    return final_loss
+
+
+if __name__ == "__main__":
+    main()

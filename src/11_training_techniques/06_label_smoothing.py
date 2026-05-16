@@ -5,8 +5,17 @@
 import torch
 from torch import nn
 
-logits = torch.tensor([[5.0, 0.0, 0.0]])
-target = torch.tensor([0])
 
-print(nn.CrossEntropyLoss()(logits, target))
-print(nn.CrossEntropyLoss(label_smoothing=0.1)(logits, target))
+def main() -> tuple[torch.Tensor, torch.Tensor]:
+    logits = torch.tensor([[5.0, 0.0, 0.0]])
+    target = torch.tensor([0])
+
+    plain = nn.CrossEntropyLoss()(logits, target)
+    smooth = nn.CrossEntropyLoss(label_smoothing=0.1)(logits, target)
+    print(plain)
+    print(smooth)
+    return plain, smooth
+
+
+if __name__ == "__main__":
+    main()

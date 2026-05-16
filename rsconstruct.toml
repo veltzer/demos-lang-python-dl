@@ -1,18 +1,20 @@
 [processor.ruff]
-src_dirs = ["src", "config"]
+src_dirs = ["src", "config", "tests"]
 
 [processor.mypy]
-src_dirs = ["src", "config"]
+src_dirs = ["src", "config", "tests"]
 
 [processor.pylint]
-src_dirs = ["src", "config"]
+src_dirs = ["src", "config", "tests"]
 
 [processor.zspell]
 src_dirs = ["src", "notes"]
 src_extensions = [".md"]
 
+[processor.pytest]
+
 [processor.requirements]
-src_dirs = ["src", "config"]
+src_dirs = ["src", "config", "tests"]
 # manim-voiceover does `import pkg_resources` at module top level, which
 # lives in setuptools. setuptools is no longer bundled on Python 3.12+,
 # and manim-voiceover's metadata does not declare it. Static AST scanning

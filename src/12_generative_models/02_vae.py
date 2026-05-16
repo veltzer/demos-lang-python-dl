@@ -5,8 +5,6 @@
 import torch
 from torch import nn
 
-torch.manual_seed(0)
-
 
 class VAE(nn.Module):
     def __init__(self, in_dim: int = 8, latent: int = 4) -> None:
@@ -23,11 +21,13 @@ class VAE(nn.Module):
         return self.dec(z), mu, logvar
 
 
-def main() -> None:
+def main() -> float:
+    torch.manual_seed(0)
     x = torch.randn(200, 8)
     model = VAE()
     opt = torch.optim.Adam(model.parameters(), lr=0.01)
 
+    loss = torch.tensor(0.0)
     for _ in range(1000):
         opt.zero_grad()
         recon, mu, logvar = model(x)
@@ -37,7 +37,10 @@ def main() -> None:
         loss.backward()
         opt.step()
 
-    print(loss.item())
+    final_loss = loss.item()
+    print(final_loss)
+    return final_loss
 
 
-main()
+if __name__ == "__main__":
+    main()

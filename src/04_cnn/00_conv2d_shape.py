@@ -5,8 +5,16 @@
 import torch
 from torch import nn
 
-torch.manual_seed(0)
 
-conv = nn.Conv2d(3, 8, kernel_size=3, padding=1)
-x = torch.randn(2, 3, 32, 32)
-print(conv(x).shape)
+def main() -> torch.Size:
+    torch.manual_seed(0)
+
+    conv = nn.Conv2d(3, 8, kernel_size=3, padding=1)
+    x = torch.randn(2, 3, 32, 32)
+    out = conv(x)
+    print(out.shape)
+    return out.shape
+
+
+if __name__ == "__main__":
+    main()

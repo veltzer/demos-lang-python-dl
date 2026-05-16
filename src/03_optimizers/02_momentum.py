@@ -20,5 +20,13 @@ def run(use_momentum: bool) -> float:
     return x.item()
 
 
-print("plain   :", run(False))
-print("momentum:", run(True))
+def main() -> tuple[float, float]:
+    plain = run(False)
+    momentum = run(True)
+    print("plain   :", plain)
+    print("momentum:", momentum)
+    return plain, momentum
+
+
+if __name__ == "__main__":
+    main()

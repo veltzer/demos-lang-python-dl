@@ -16,6 +16,13 @@ class TwoLayerNet(nn.Module):
         return self.linear2(torch.relu(self.linear1(x)))
 
 
-torch.manual_seed(0)
-model = TwoLayerNet(20, 64, 3)
-print(model(torch.randn(5, 20)).shape)
+def main() -> tuple[TwoLayerNet, torch.Tensor]:
+    torch.manual_seed(0)
+    model = TwoLayerNet(20, 64, 3)
+    y = model(torch.randn(5, 20))
+    print(y.shape)
+    return model, y
+
+
+if __name__ == "__main__":
+    main()

@@ -5,6 +5,14 @@
 import torch
 from torch import nn
 
-up = nn.ConvTranspose2d(8, 4, kernel_size=2, stride=2)
-x = torch.randn(1, 8, 4, 4)
-print(up(x).shape)
+
+def main() -> torch.Tensor:
+    up = nn.ConvTranspose2d(8, 4, kernel_size=2, stride=2)
+    x = torch.randn(1, 8, 4, 4)
+    y = up(x)
+    print(y.shape)
+    return y
+
+
+if __name__ == "__main__":
+    main()

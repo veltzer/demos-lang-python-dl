@@ -6,19 +6,6 @@ import math
 import torch
 from torch import nn
 
-torch.manual_seed(0)
-
-t = torch.linspace(0, 8 * math.pi, 200)
-y = torch.sin(t)
-
-window = 20
-xs, ys = [], []
-for i in range(len(y) - window):
-    xs.append(y[i:i + window])
-    ys.append(y[i + window])
-x = torch.stack(xs).unsqueeze(-1)
-target = torch.stack(ys).unsqueeze(-1)
-
 
 class Model(nn.Module):
     def __init__(self) -> None:
@@ -31,14 +18,35 @@ class Model(nn.Module):
         return self.head(out[:, -1])
 
 
-model = Model()
-opt = torch.optim.Adam(model.parameters(), lr=0.01)
-loss_fn = nn.MSELoss()
+def main() -> tuple[Model, float]:
+    torch.manual_seed(0)
 
-for epoch in range(300):
-    opt.zero_grad()
-    loss = loss_fn(model(x), target)
-    loss.backward()
-    opt.step()
-    if epoch % 50 == 0:
-        print(epoch, loss.item())
+    t = torch.linspace(0, 8 * math.pi, 200)
+    y = torch.sin(t)
+
+    window = 20
+    xs, ys = [], []
+    for i in range(len(y) - window):
+        xs.append(y[i:i + window])
+        ys.append(y[i + window])
+    x = torch.stack(xs).unsqueeze(-1)
+    target = torch.stack(ys).unsqueeze(-1)
+
+    model = Model()
+    opt = torch.optim.Adam(model.parameters(), lr=0.01)
+    loss_fn = nn.MSELoss()
+
+    final_loss = 0.0
+    for epoch in range(300):
+        opt.zero_grad()
+        loss = loss_fn(model(x), target)
+        loss.backward()
+        opt.step()
+        final_loss = loss.item()
+        if epoch % 50 == 0:
+            print(epoch, loss.item())
+    return model, final_loss
+
+
+if __name__ == "__main__":
+    main()

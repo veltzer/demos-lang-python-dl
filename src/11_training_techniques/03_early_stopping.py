@@ -5,37 +5,44 @@
 import torch
 from torch import nn
 
-torch.manual_seed(0)
 
-n = 400
-x = torch.randn(n, 4)
-w_true = torch.randn(4, 1)
-y = x @ w_true + 0.1 * torch.randn(n, 1)
+def main() -> tuple[int, float]:
+    torch.manual_seed(0)
 
-x_train, x_val = x[:300], x[300:]
-y_train, y_val = y[:300], y[300:]
+    n = 400
+    x = torch.randn(n, 4)
+    w_true = torch.randn(4, 1)
+    y = x @ w_true + 0.1 * torch.randn(n, 1)
 
-model = nn.Linear(4, 1)
-opt = torch.optim.Adam(model.parameters(), lr=0.05)
-loss_fn = nn.MSELoss()
+    x_train, x_val = x[:300], x[300:]
+    y_train, y_val = y[:300], y[300:]
 
-best, patience, wait, stopped_at = float("inf"), 3, 0, 0
-for epoch in range(200):
-    opt.zero_grad()
-    loss_fn(model(x_train), y_train).backward()
-    opt.step()
+    model = nn.Linear(4, 1)
+    opt = torch.optim.Adam(model.parameters(), lr=0.05)
+    loss_fn = nn.MSELoss()
 
-    with torch.no_grad():
-        val = loss_fn(model(x_val), y_val).item()
+    best, patience, wait, stopped_at = float("inf"), 3, 0, 0
+    for epoch in range(200):
+        opt.zero_grad()
+        loss_fn(model(x_train), y_train).backward()
+        opt.step()
 
-    if val < best - 1e-4:
-        best = val
-        wait = 0
-    else:
-        wait += 1
-        if wait >= patience:
-            stopped_at = epoch
-            break
+        with torch.no_grad():
+            val = loss_fn(model(x_val), y_val).item()
 
-print("stopped at epoch:", stopped_at)
-print("best val loss   :", best)
+        if val < best - 1e-4:
+            best = val
+            wait = 0
+        else:
+            wait += 1
+            if wait >= patience:
+                stopped_at = epoch
+                break
+
+    print("stopped at epoch:", stopped_at)
+    print("best val loss   :", best)
+    return stopped_at, best
+
+
+if __name__ == "__main__":
+    main()

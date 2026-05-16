@@ -4,6 +4,15 @@
 
 import jax.numpy as jnp
 
-a = jnp.array([1.0, 2.0, 3.0])
-print(a * 2)
-print(a.sum())
+
+def main() -> tuple[jnp.ndarray, jnp.ndarray]:
+    a = jnp.array([1.0, 2.0, 3.0])
+    doubled = a * 2
+    total = a.sum()
+    print(doubled)
+    print(total)
+    return doubled, total
+
+
+if __name__ == "__main__":
+    main()

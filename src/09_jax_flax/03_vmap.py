@@ -10,10 +10,17 @@ def dot(u: jnp.ndarray, v: jnp.ndarray) -> jnp.ndarray:
     return jnp.dot(u, v)
 
 
-batched = jax.vmap(dot)
+def main() -> jnp.ndarray:
+    batched = jax.vmap(dot)
 
-key = jax.random.PRNGKey(0)
-ka, kb = jax.random.split(key)
-a = jax.random.normal(ka, (5, 3))
-b = jax.random.normal(kb, (5, 3))
-print(batched(a, b))
+    key = jax.random.PRNGKey(0)
+    ka, kb = jax.random.split(key)
+    a = jax.random.normal(ka, (5, 3))
+    b = jax.random.normal(kb, (5, 3))
+    out = batched(a, b)
+    print(out)
+    return out
+
+
+if __name__ == "__main__":
+    main()
