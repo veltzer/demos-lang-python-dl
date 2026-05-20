@@ -13,6 +13,7 @@ def main() -> bool:
 
     with tempfile.NamedTemporaryFile(suffix=".pt", delete=False) as f:
         path = f.name
+        print(f"{path}")
     torch.save(m1.state_dict(), path)
 
     m2 = nn.Linear(4, 2)
