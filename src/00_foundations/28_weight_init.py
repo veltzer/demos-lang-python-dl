@@ -9,7 +9,7 @@ def main() -> dict[str, float]:
     results: dict[str, float] = {}
     for name, fn in [
         ("normal(0, 0.01)", lambda w: nn.init.normal_(w, 0, 0.01)),
-        ("xavier_normal", nn.init.xavier_normal_),
+        ("xavier_normal", lambda w: nn.init.xavier_normal_(w)),  # pylint: disable=unnecessary-lambda
         ("kaiming_normal", lambda w: nn.init.kaiming_normal_(w, nonlinearity="relu")),
     ]:
         layer = nn.Linear(100, 100)
