@@ -2,7 +2,7 @@
 
 Build:
 
-```
+```text
 keras.Sequential([
     keras.layers.Dense(32, activation='relu', input_shape=(10,)),
     keras.layers.Dense(16, activation='relu'),

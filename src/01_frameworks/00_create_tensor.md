@@ -6,7 +6,7 @@ Print the tensor, its `dtype`, and its `shape`.
 
 ## Expected output
 
-```
+```text
 tensor([1, 2, 3, 4, 5])
 torch.int64
 torch.Size([5])

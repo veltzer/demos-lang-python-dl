@@ -6,7 +6,7 @@ with learnable scalars `s, t`.
 Train (maximum likelihood) so that the model puts mass on a target distribution
 of `N(3, 2)`. The change-of-variables formula says:
 
-```
+```text
 log p_X(x) = log p_Z(z) - s
 ```
 

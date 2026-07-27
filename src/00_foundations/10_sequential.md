@@ -2,7 +2,7 @@
 
 Build a small MLP using `nn.Sequential`:
 
-```
+```text
 Linear(10 -> 32) -> ReLU -> Linear(32 -> 16) -> ReLU -> Linear(16 -> 2)
 ```
 

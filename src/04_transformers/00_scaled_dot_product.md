@@ -2,7 +2,7 @@
 
 Implement the attention formula by hand:
 
-```
+```text
 attn(Q, K, V) = softmax(Q @ K^T / sqrt(d_k)) @ V
 ```
 

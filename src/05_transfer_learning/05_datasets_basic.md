@@ -2,7 +2,7 @@
 
 Load the `glue/sst2` dataset (small sentiment dataset).
 
-```
+```text
 from datasets import load_dataset
 ds = load_dataset("glue", "sst2")
 ```

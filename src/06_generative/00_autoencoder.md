@@ -2,7 +2,7 @@
 
 Build a tiny autoencoder for `(N, 8)` inputs:
 
-```
+```text
 Encoder: Linear(8 -> 2)
 Decoder: Linear(2 -> 8)
 ```

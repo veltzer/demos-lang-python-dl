@@ -6,7 +6,7 @@ actually does.
 
 The network:
 
-```
+```text
 x  : (B, 2)   input
 W1 : (2, 3)   first weights
 b1 : (3,)     first bias

@@ -2,7 +2,7 @@
 
 Load the BERT-base-uncased tokenizer:
 
-```
+```text
 AutoTokenizer.from_pretrained("bert-base-uncased")
 ```
 

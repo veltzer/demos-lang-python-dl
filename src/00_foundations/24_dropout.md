@@ -2,7 +2,7 @@
 
 Build a model with dropout between two Linear layers:
 
-```
+```text
 Linear(10, 64) -> ReLU -> Dropout(p=0.3) -> Linear(64, 2)
 ```
 

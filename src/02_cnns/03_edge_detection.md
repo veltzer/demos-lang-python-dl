@@ -3,7 +3,7 @@
 Build a `Conv2d(1, 1, kernel_size=3, bias=False, padding=1)`. Manually set its
 weight to the Sobel-X kernel:
 
-```
+```text
 [[-1, 0, 1],
  [-2, 0, 2],
  [-1, 0, 1]]

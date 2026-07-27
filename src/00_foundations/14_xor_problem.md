@@ -2,7 +2,7 @@
 
 Train a small MLP (`2 -> 4 -> 1` with `Tanh` activations) to solve XOR:
 
-```
+```text
 X = [[0,0], [0,1], [1,0], [1,1]]
 Y = [[0],   [1],   [1],   [0]]
 ```

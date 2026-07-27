@@ -2,7 +2,7 @@
 
 Let `x` be a scalar tensor with `requires_grad=True` and `x = 2.0`. Compute:
 
-```
+```text
 y = x * 3
 z = y * y + y
 ```

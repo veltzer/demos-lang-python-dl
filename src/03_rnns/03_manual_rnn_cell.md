@@ -2,7 +2,7 @@
 
 Implement the RNN recurrence by hand:
 
-```
+```text
 h_t = tanh(W_xh @ x_t + W_hh @ h_{t-1} + b)
 ```
 
