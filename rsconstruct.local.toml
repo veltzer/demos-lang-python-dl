@@ -12,3 +12,11 @@ extra = ["setuptools"]
 # `manim_themes` (which lives at shared/shared-themes/manim_themes.py) as
 # a PyPI distribution.
 python_paths = []
+
+# Install the pinned demo libraries so pylint/mypy can resolve the imports in
+# the exercises; without this CI has none of them and every import fails.
+[dependencies]
+pip = [
+	"-r",
+	"requirements.txt",
+]
