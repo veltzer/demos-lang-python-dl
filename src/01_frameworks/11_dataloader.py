@@ -3,7 +3,7 @@
 """DataLoader produces mini-batches."""
 
 import torch
-from torch.utils.data import TensorDataset, DataLoader
+from torch.utils.data import DataLoader, TensorDataset
 
 
 def main() -> tuple[DataLoader, list[tuple[torch.Tensor, torch.Tensor]]]:

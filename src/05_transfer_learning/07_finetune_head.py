@@ -3,9 +3,8 @@
 """Freeze DistilBERT, train a tiny classifier head on a few SST-2 examples."""
 
 import torch
-from torch import nn
-
 from datasets import load_dataset
+from torch import nn
 from transformers import AutoModel, AutoTokenizer
 
 

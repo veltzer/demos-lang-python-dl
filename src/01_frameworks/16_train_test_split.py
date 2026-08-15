@@ -3,7 +3,7 @@
 """Split a dataset with random_split."""
 
 import torch
-from torch.utils.data import TensorDataset, Subset, random_split
+from torch.utils.data import Subset, TensorDataset, random_split
 
 
 def main() -> tuple[Subset, Subset]:

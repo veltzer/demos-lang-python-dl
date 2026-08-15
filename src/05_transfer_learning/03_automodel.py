@@ -3,7 +3,7 @@
 """Extract BERT embeddings for a sentence."""
 
 import torch
-from transformers import AutoTokenizer, AutoModel
+from transformers import AutoModel, AutoTokenizer
 
 
 def main() -> torch.Tensor:

@@ -3,7 +3,7 @@
 """Custom Dataset subclass."""
 
 import torch
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import DataLoader, Dataset
 
 
 class SquaresDataset(Dataset):

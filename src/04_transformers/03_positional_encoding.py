@@ -3,6 +3,7 @@
 """Sinusoidal positional encoding table."""
 
 import math
+
 import torch
 
 

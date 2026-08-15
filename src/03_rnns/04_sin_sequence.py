@@ -3,6 +3,7 @@
 """Forecast next value of a sine wave with an LSTM."""
 
 import math
+
 import torch
 from torch import nn
 

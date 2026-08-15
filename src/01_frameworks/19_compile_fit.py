@@ -2,8 +2,8 @@
 
 """compile() then fit() a Keras classifier on random data."""
 
-import numpy as np
 import keras
+import numpy as np
 
 
 def main() -> tuple[keras.Model, "keras.callbacks.History"]:

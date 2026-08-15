@@ -4,8 +4,9 @@
 
 import os
 import tempfile
-import numpy as np
+
 import keras
+import numpy as np
 
 
 def main() -> bool:

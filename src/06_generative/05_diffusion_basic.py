@@ -5,7 +5,6 @@
 import torch
 from torch import nn
 
-
 T = 20
 alphas = torch.linspace(0.99, 0.05, T)
 

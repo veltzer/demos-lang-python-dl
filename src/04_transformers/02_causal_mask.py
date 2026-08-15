@@ -3,6 +3,7 @@
 """Causal masking in scaled dot-product attention."""
 
 import math
+
 import torch
 
 
