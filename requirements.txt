@@ -5,7 +5,6 @@ jax
 keras
 numpy
 pytest
-setuptools
 tensorflow
 torch
 torchvision
