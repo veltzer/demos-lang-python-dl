@@ -1,1 +1,16 @@
 # Repo-specific overlay. Deep-merged over the canonical rsconstruct.toml.
+
+# Runtime deps: this is a deep-learning demo/exercise repo whose tests import
+# the full stack. Heavy to install but required -- pytest imports torch etc.
+[dependencies]
+pip = [
+    "datasets",
+    "flax",
+    "jax",
+    "keras",
+    "numpy",
+    "tensorflow",
+    "torch",
+    "torchvision",
+    "transformers",
+]
