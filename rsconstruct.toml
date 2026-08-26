@@ -41,13 +41,18 @@ src_dirs = ["."]
 # Runtime deps: this is a deep-learning demo/exercise repo whose tests import
 # the full stack. Heavy to install but required -- pytest imports torch etc.
 [dependencies]
+# No tensorflow: it publishes no cp314 wheel (latest stable 2.21.0 stops at
+# cp313) and the CI runner is ubuntu-26.04, which ships Python 3.14, so
+# installing it there is impossible. The two tf examples guard their import
+# and their tests skip when it is absent; the keras examples run on the torch
+# backend (see KERAS_BACKEND in tests/conftest.py). Restore once tensorflow
+# ships cp314 wheels.
 pip = [
     "datasets",
     "flax",
     "jax",
     "keras",
     "numpy",
-    "tensorflow",
     "torch",
     "torchvision",
     "transformers",
