@@ -24,6 +24,13 @@ src_dirs = ["src", "tests"]
 
 [processor.requirements]
 src_dirs = ["src", "tests"]
+# tensorflow publishes no cp314 wheel (latest stable 2.21.0 stops at cp313) and
+# the CI runner is ubuntu-26.04, which ships Python 3.14 -- so installing it
+# there is impossible. The two tf examples guard their import and are skipped
+# when it is absent, and the keras examples run on the torch backend (see
+# KERAS_BACKEND in tests/conftest.py), so tensorflow is optional here rather
+# than a real requirement. Drop this once tensorflow ships cp314 wheels.
+exclude = ["tensorflow"]
 
 [processor.pytest]
 src_dirs = ["tests"]
