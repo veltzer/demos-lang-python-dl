@@ -6,7 +6,7 @@ import keras
 import numpy as np
 
 
-def main() -> tuple[keras.Model, "keras.callbacks.History"]:
+def main() -> tuple[keras.Model, keras.callbacks.History]:
     np.random.seed(0)
 
     x = np.random.randn(200, 10).astype("float32")

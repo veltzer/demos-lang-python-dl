@@ -30,3 +30,7 @@ src_dirs = ["."]
 
 # Runtime deps: this is a deep-learning demo/exercise repo whose tests import
 # the full stack. Heavy to install but required -- pytest imports torch etc.
+
+# lint the GitHub Actions workflow files with actionlint
+[processor.actionlint]
+src_dirs = [".github/workflows"]
