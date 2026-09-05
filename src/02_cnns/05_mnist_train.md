@@ -14,7 +14,7 @@ This is the first exercise in the repo that uses a real dataset.
   60000-train set works too but takes minutes.
 - Build the same CNN as `04_mnist_cnn`:
   `Conv(1,8,3,pad=1) -> ReLU -> MaxPool -> Conv(8,16,3,pad=1) -> ReLU ->
-   MaxPool -> Flatten -> Linear(16*7*7, 10)`.
+  MaxPool -> Flatten -> Linear(16*7*7, 10)`.
 - Train for 3 epochs with `CrossEntropyLoss` and `Adam(lr=1e-3)`, batch size
   64. Print epoch loss.
 - Compute test-set accuracy after training. With 2000 train examples and 3

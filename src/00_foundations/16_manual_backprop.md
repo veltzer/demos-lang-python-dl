@@ -28,13 +28,13 @@ confirm they match.
   shapes (use `requires_grad=True` so you can compare against autograd later).
 - Forward: compute `h`, `y_hat`, `loss`.
 - Backward by hand:
-  - `dL/dy_hat   = 2 (y_hat - y) / B`
-  - `dL/dW2      = h.T @ dL/dy_hat`
-  - `dL/db2      = sum(dL/dy_hat, axis=0)`
-  - `dL/dh       = dL/dy_hat @ W2.T`
-  - `dL/dz1      = dL/dh * (z1 > 0)`        where `z1 = x @ W1 + b1`
-  - `dL/dW1      = x.T @ dL/dz1`
-  - `dL/db1      = sum(dL/dz1, axis=0)`
+    - `dL/dy_hat   = 2 (y_hat - y) / B`
+    - `dL/dW2      = h.T @ dL/dy_hat`
+    - `dL/db2      = sum(dL/dy_hat, axis=0)`
+    - `dL/dh       = dL/dy_hat @ W2.T`
+    - `dL/dz1      = dL/dh * (z1 > 0)`        where `z1 = x @ W1 + b1`
+    - `dL/dW1      = x.T @ dL/dz1`
+    - `dL/db1      = sum(dL/dz1, axis=0)`
 - Call `loss.backward()` and compare each manual gradient against `W1.grad`,
   `b1.grad`, `W2.grad`, `b2.grad` using `torch.allclose`. They should match.
 

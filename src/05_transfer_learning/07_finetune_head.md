@@ -6,8 +6,8 @@ pretrained backbone, train only a small classifier head on top.
 ## Tasks
 
 - Load `distilbert-base-uncased` (smaller and faster than `bert-base-uncased`):
-  - `AutoTokenizer.from_pretrained(...)`
-  - `AutoModel.from_pretrained(...)`
+    - `AutoTokenizer.from_pretrained(...)`
+    - `AutoModel.from_pretrained(...)`
 - **Freeze** every parameter in the backbone: `for p in model.parameters():
   p.requires_grad = False`.
 - Load 64 train examples from GLUE SST-2 (`load_dataset("glue", "sst2",
