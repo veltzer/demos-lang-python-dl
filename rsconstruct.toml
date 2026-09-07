@@ -4,6 +4,17 @@
 
 [analyzer.python]
 
+[processor.luacheck]
+src_dirs = ["config"]
+
+[processor.tera]
+src_dirs = ["tera.templates"]
+dep_auto = [
+	"config/project.lua",
+	"config/personal.lua",
+	"config/version.lua",
+]
+
 [processor.rumdl]
 src_dirs = ["src", "notes"]
 src_files = ["README.md"]
