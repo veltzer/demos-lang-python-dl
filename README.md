@@ -1,11 +1,11 @@
 <!-- This file is generated. Do not edit it by hand: your changes will be
      lost on the next build. Edit the template it is rendered from, or the
      values that template reads, and build again. -->
-# *demos-python-dl* project by Mark Veltzer
+# *demos-lang-python-dl* project by Mark Veltzer
 
-description: Demos deep learning in the python language
+description: Demos of deep learning in the python language
 
-project website: https://veltzer.github.io/demos-python-dl
+project website: https://veltzer.github.io/demos-lang-python-dl
 
 author: Mark Veltzer
 
@@ -15,11 +15,11 @@ version: 0.0.1
 
 ## github
 
-![License](https://img.shields.io/github/license/veltzer/demos-python-dl)
+![License](https://img.shields.io/github/license/veltzer/demos-lang-python-dl)
 
 ## build
 
-![build](https://github.com/veltzer/demos-python-dl/workflows/build/badge.svg)
+![build](https://github.com/veltzer/demos-lang-python-dl/workflows/build/badge.svg)
 ## Number of exercises
 
 Currently there are 99 exercises in this repo.
