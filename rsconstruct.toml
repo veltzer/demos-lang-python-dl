@@ -31,8 +31,6 @@ src_dirs = ["src", "notes"]
 [processor.ruff]
 src_dirs = ["src", "tests"]
 
-[processor.pylint]
-src_dirs = ["src", "tests"]
 
 [processor.mypy]
 src_dirs = ["src", "tests"]
