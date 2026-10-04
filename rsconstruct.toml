@@ -8,10 +8,10 @@ reject_dot_src_dirs = true
 
 [analyzer.python]
 
-[processor.luacheck]
+[processor.checker.luacheck]
 src_dirs = ["config"]
 
-[processor.tera]
+[processor.generator.tera]
 src_dirs = ["tera.templates"]
 dep_auto = [
 	"config/project.lua",
@@ -19,31 +19,31 @@ dep_auto = [
 	"config/version.lua",
 ]
 
-[processor.rumdl]
+[processor.checker.rumdl]
 src_dirs = ["src", "notes"]
 src_files = ["README.md"]
 
-[processor.zspell]
+[processor.checker.zspell]
 src_dirs = ["src", "notes"]
 
 # ─── python ──────────────────────────────────────────────────────────────────
 
-[processor.ruff]
+[processor.checker.ruff]
 src_dirs = ["src", "tests"]
 
 
-[processor.mypy]
+[processor.checker.mypy]
 src_dirs = ["src", "tests"]
 
-[processor.pytest]
+[processor.checker.pytest]
 src_dirs = ["tests"]
 
-[processor.taplo]
+[processor.checker.taplo]
 src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
 # Runtime deps: this is a deep-learning demo/exercise repo whose tests import
 # the full stack. Heavy to install but required -- pytest imports torch etc.
 
 # lint the GitHub Actions workflow files with actionlint
-[processor.actionlint]
+[processor.checker.actionlint]
 src_dirs = [".github/workflows"]
