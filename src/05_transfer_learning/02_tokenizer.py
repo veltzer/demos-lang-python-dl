@@ -9,6 +9,7 @@ from transformers import AutoTokenizer
 
 def main() -> tuple[Any, Any]:
     tok = AutoTokenizer.from_pretrained("bert-base-uncased")
+    assert tok is not None  # transformers types the loaded tokenizer as optional
     enc = tok("Deep learning is fun.")
     tokens = tok.convert_ids_to_tokens(enc.input_ids)
     print(enc.input_ids)

@@ -8,6 +8,7 @@ from transformers import AutoModel, AutoTokenizer
 
 def main() -> torch.Tensor:
     tok = AutoTokenizer.from_pretrained("bert-base-uncased")
+    assert tok is not None  # transformers types the loaded tokenizer as optional
     model = AutoModel.from_pretrained("bert-base-uncased").eval()
 
     inputs = tok("Hello world", return_tensors="pt")

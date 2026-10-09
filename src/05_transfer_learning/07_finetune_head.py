@@ -13,6 +13,7 @@ def main() -> tuple[list[float], bool]:
 
     name = "distilbert-base-uncased"
     tok = AutoTokenizer.from_pretrained(name)
+    assert tok is not None  # transformers types the loaded tokenizer as optional
     backbone = AutoModel.from_pretrained(name)
 
     for p in backbone.parameters():

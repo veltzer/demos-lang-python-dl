@@ -12,10 +12,11 @@ def main() -> float:
     for _ in range(50):
         loss = (x - 5) ** 2
         loss.backward()
-        assert x.grad is not None
+        grad = x.grad
+        assert grad is not None
         with torch.no_grad():
-            x -= lr * x.grad
-        x.grad.zero_()
+            x -= lr * grad
+        grad.zero_()
 
     print(x.item())
     return x.item()

@@ -32,7 +32,7 @@ src_dirs = ["src", "notes"]
 src_dirs = ["src", "tests"]
 
 
-[processor.checker.mypy]
+[processor.checker.pyrefly]
 src_dirs = ["src", "tests"]
 
 [processor.checker.pytest]
