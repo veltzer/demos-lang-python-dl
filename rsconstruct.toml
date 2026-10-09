@@ -45,5 +45,5 @@ src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 # the full stack. Heavy to install but required -- pytest imports torch etc.
 
 # lint the GitHub Actions workflow files with actionlint
-[processor.checker.actionlint]
+[processor.checker.iactionlint]
 src_dirs = [".github/workflows"]
