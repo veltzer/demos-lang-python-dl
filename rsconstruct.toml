@@ -8,16 +8,13 @@ reject_dot_src_dirs = true
 
 [analyzer.python]
 
+[analyzer.tera]
+
 [processor.checker.iluacheck]
 src_dirs = ["config"]
 
 [processor.generator.tera]
 src_dirs = ["tera.templates"]
-dep_auto = [
-	"config/project.lua",
-	"config/personal.lua",
-	"config/version.lua",
-]
 
 [processor.checker.rumdl]
 src_dirs = ["src", "notes"]
