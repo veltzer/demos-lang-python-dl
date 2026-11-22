@@ -13,6 +13,7 @@ The reference Python IDE. Two editions:
   notebooks, and remote interpreters.
 
 What you get:
+
 - World-class refactoring (rename across files, extract method, etc.).
 - A real visual debugger with breakpoints, watch expressions, conditional stops.
 - Built-in venv management (creates one per project, switches automatically).
@@ -20,6 +21,7 @@ What you get:
 - Plotting that opens in a panel inside the IDE.
 
 Setup for ML work:
+
 1. `File → New Project`. Pick a folder. Under "Interpreter" choose "New environment" →
    "Virtualenv". PyCharm will create `.venv/` for you.
 2. Inside the IDE, open the bottom-bar Terminal — it's pre-activated to your venv.
@@ -33,6 +35,7 @@ Setup for ML work:
 The most popular IDE-grade editor today. Free, highly extensible.
 
 What you need to install:
+
 - VS Code itself: [code.visualstudio.com](https://code.visualstudio.com/).
 - The **Python extension** by Microsoft (auto-detects venvs, debugger, IntelliSense).
 - The **Pylance** extension (faster type checking and autocompletion — usually
@@ -41,6 +44,7 @@ What you need to install:
   **Pylint** extensions (lint-on-save), **GitLens** (richer Git history).
 
 Setup:
+
 1. Open the project folder (`File → Open Folder`).
 2. `Ctrl+Shift+P` → `Python: Create Environment` → `.venv` → pick your interpreter.
 3. Open the integrated terminal (`Ctrl+\``); it's auto-activated.
@@ -53,6 +57,7 @@ Notebook-style execution: cells of Python whose outputs (text, plots, tables) ap
 inline. The de facto standard for exploratory data science.
 
 Two ways to run it:
+
 - **Standalone**: `pip install jupyterlab` then `jupyter lab` opens a browser-based UI.
 - **Inside an IDE**: VS Code (via the Jupyter extension) and PyCharm Professional both
   have first-class notebook UIs. PyCharm Community can open `.ipynb` files but with
@@ -66,23 +71,27 @@ project.
 ## On macOS specifically
 
 The Mac comes with a few editors out of the box:
+
 - **TextEdit** — useless for code.
 - **vim** and **nano** — fine for quick edits in a terminal but no Python integration.
 - **Xcode** — Apple's IDE, supports many languages, but Python support is third-party
   and limited. Don't use it for Python.
 
 For real Python work on macOS install one of the cross-platform options above:
+
 - **PyCharm CE** (`brew install --cask pycharm-ce`) — same experience as on Linux/Win.
 - **VS Code** (`brew install --cask visual-studio-code`) — same experience as on
   Linux/Win.
 
 The other macOS-specific option worth knowing about:
+
 - **Cursor** — a VS Code fork with built-in AI assistance. Same Python extensions as
   VS Code but with deeper AI features. Free tier available.
 
 ## Lightweight terminal-only setup
 
 If you don't want a full IDE:
+
 - A modern terminal (Apple Terminal / iTerm2 / Windows Terminal / GNOME Terminal).
 - An editor with good Python support: **vim** with `python-mode` and `coc.nvim`,
   **neovim** with `nvim-lspconfig` and `pyright`, or **emacs** with `lsp-mode`.

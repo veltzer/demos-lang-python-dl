@@ -3,6 +3,7 @@
 Build a `(3, 4)` random float tensor with seed 0.
 
 Print:
+
 - the sum of all elements
 - the per-column sum (shape `(4,)`)
 - the per-row mean (shape `(3,)`)
