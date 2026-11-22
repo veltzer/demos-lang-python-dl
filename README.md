@@ -5,7 +5,7 @@
 
 description: Demos of deep learning in the python language
 
-project website: https://veltzer.github.io/demos-lang-python-dl
+project website: <https://veltzer.github.io/demos-lang-python-dl>
 
 author: Mark Veltzer
 
