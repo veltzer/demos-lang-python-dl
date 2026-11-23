@@ -12,6 +12,8 @@ except ImportError:  # pragma: no cover - exercised only where tf is absent
 
 
 def main():
+    if tf is None:
+        raise RuntimeError("tensorflow is not installed")
     t = tf.constant([1, 2, 3, 4, 5])
     print(t)
     print(t.dtype)

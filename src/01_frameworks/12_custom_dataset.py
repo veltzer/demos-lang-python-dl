@@ -13,8 +13,8 @@ class SquaresDataset(Dataset):
     def __len__(self) -> int:
         return self.n
 
-    def __getitem__(self, idx: int) -> tuple[torch.Tensor, torch.Tensor]:
-        return torch.tensor(idx), torch.tensor(idx * idx)
+    def __getitem__(self, index: int) -> tuple[torch.Tensor, torch.Tensor]:
+        return torch.tensor(index), torch.tensor(index * index)
 
 
 def main() -> tuple[SquaresDataset, list[tuple[torch.Tensor, torch.Tensor]]]:

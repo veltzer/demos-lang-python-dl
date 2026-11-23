@@ -12,6 +12,8 @@ except ImportError:  # pragma: no cover - exercised only where tf is absent
 
 
 def main():
+    if tf is None:
+        raise RuntimeError("tensorflow is not installed")
     x = tf.Variable(4.0)
     with tf.GradientTape() as tape:
         y = x ** 3
