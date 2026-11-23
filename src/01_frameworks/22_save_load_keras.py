@@ -10,10 +10,12 @@ import numpy as np
 
 
 def main() -> bool:
-    m1 = keras.Sequential([keras.layers.Dense(4, input_shape=(3,))])
+    m1 = keras.Sequential([keras.Input(shape=(3,)), keras.layers.Dense(4)])
     m1.compile(optimizer="adam", loss="mse")
 
-    x = np.random.randn(2, 3).astype("float32")
+    x = np.random.default_rng().standard_normal((2, 3)).astype("float32")
+    # one training step builds the optimizer's state, which is saved with it
+    m1.fit(x, np.zeros((2, 4), dtype="float32"), epochs=1, verbose=0)
     y1 = m1.predict(x, verbose=0)
 
     with tempfile.NamedTemporaryFile(suffix=".keras", delete=False) as f:
@@ -23,7 +25,7 @@ def main() -> bool:
     m2 = keras.models.load_model(path)
     y2 = m2.predict(x, verbose=0)
 
-    same = bool(np.allclose(y1, y2))
+    same = np.allclose(y1, y2)
     print(same)
     os.unlink(path)
     return same

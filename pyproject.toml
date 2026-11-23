@@ -27,6 +27,8 @@ package = false
 [tool.pyrefly]
 # Type checking (rsconstruct's pyrefly processor), with pyrefly's default
 # error set. "." on the search path is mypy's implicit current directory.
+# Warnings fail the check like errors (pyrefly lets them pass by default).
+min-severity = "warn"
 search-path = [
     "src",
     ".",
@@ -41,4 +43,19 @@ ignore-missing-imports = [
     "torch.*",
     "torchvision.*",
     "transformers.*",
+]
+
+[tool.pytest.ini_options]
+# Every strictness check pytest has (strict_config, strict_markers,
+# strict_xfail, strict_parametrization_ids), and every warning fails the
+# test that raised it rather than scrolling past in the summary.
+strict = true
+# One exact exception, for an upstream bug: keras's Variable.__array__ (in
+# its torch backend and its common variables) takes no `copy` keyword, so
+# numpy 2 warns on every conversion. Present in keras 3.15.1, the latest
+# release on 2026-11-23. Remove this entry once a keras release gives
+# __array__ a `copy` parameter.
+filterwarnings = [
+  "error",
+  "ignore:__array__ implementation doesn't accept a copy keyword:DeprecationWarning:keras\\.src\\.backend\\.",
 ]

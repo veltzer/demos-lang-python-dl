@@ -22,7 +22,8 @@ def main() -> tuple[MLP, Any, Any]:
     model = MLP()
     params = model.init(key, jnp.ones((1, 10)))
     out = model.apply(params, jnp.ones((4, 10)))
-    print(out.shape)  # type: ignore[union-attr]
+    assert isinstance(out, jax.Array)
+    print(out.shape)
     return model, params, out
 
 

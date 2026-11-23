@@ -13,7 +13,8 @@ import torch
 def _load(path: str) -> ModuleType:
     p = Path(__file__).parent.parent / path
     spec = importlib.util.spec_from_file_location(p.stem, p)
-    assert spec is not None and spec.loader is not None
+    assert spec is not None
+    assert spec.loader is not None
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -70,8 +71,10 @@ def test_random_tensors() -> None:
     assert tuple(u.shape) == (2, 3)
     assert tuple(n.shape) == (2, 3)
     assert tuple(i.shape) == (5,)
-    assert (u >= 0).all() and (u < 1).all()
-    assert (i >= 0).all() and (i < 10).all()
+    assert (u >= 0).all()
+    assert (u < 1).all()
+    assert (i >= 0).all()
+    assert (i < 10).all()
 
 
 def test_broadcasting() -> None:

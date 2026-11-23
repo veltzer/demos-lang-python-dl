@@ -31,8 +31,10 @@ def main() -> tuple[bool, bool, bool, bool]:
     dl_db1 = dl_dz1.sum(dim=0)
 
     loss.backward()
-    assert w1.grad is not None and b1.grad is not None
-    assert w2.grad is not None and b2.grad is not None
+    assert w1.grad is not None
+    assert b1.grad is not None
+    assert w2.grad is not None
+    assert b2.grad is not None
 
     ok_w1 = torch.allclose(dl_dw1, w1.grad, atol=1e-6)
     ok_b1 = torch.allclose(dl_db1, b1.grad, atol=1e-6)

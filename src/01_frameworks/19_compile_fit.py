@@ -7,13 +7,14 @@ import numpy as np
 
 
 def main() -> tuple[keras.Model, keras.callbacks.History]:
-    np.random.seed(0)
+    rng = np.random.default_rng(0)
 
-    x = np.random.randn(200, 10).astype("float32")
-    y = np.random.randint(0, 3, size=(200,))
+    x = rng.standard_normal((200, 10)).astype("float32")
+    y = rng.integers(0, 3, size=(200,))
 
     model = keras.Sequential([
-        keras.layers.Dense(32, activation="relu", input_shape=(10,)),
+        keras.Input(shape=(10,)),
+        keras.layers.Dense(32, activation="relu"),
         keras.layers.Dense(3, activation="softmax"),
     ])
 

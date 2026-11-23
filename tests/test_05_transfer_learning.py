@@ -14,7 +14,8 @@ import pytest
 def load(path: str) -> ModuleType:
     p = Path(__file__).parent.parent / path
     spec = importlib.util.spec_from_file_location(p.stem, p)
-    assert spec is not None and spec.loader is not None
+    assert spec is not None
+    assert spec.loader is not None
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -58,7 +59,8 @@ def test_03_automodel():
 def test_04_text_generation():
     mod = load("src/05_transfer_learning/04_text_generation.py")
     out = mod.main()
-    assert isinstance(out, list) and len(out) >= 1
+    assert isinstance(out, list)
+    assert len(out) >= 1
     assert "generated_text" in out[0]
 
 

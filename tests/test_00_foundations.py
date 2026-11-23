@@ -13,7 +13,8 @@ from torch import nn
 def _load(path: str) -> ModuleType:
     p = Path(__file__).parent.parent / path
     spec = importlib.util.spec_from_file_location(p.stem, p)
-    assert spec is not None and spec.loader is not None
+    assert spec is not None
+    assert spec.loader is not None
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -90,7 +91,10 @@ def test_manual_backprop() -> None:
     mod = _load("src/00_foundations/16_manual_backprop.py")
     ok_w1, ok_b1, ok_w2, ok_b2 = mod.main()
     # All four hand-derived gradients must match autograd's
-    assert ok_w1 and ok_b1 and ok_w2 and ok_b2
+    assert ok_w1
+    assert ok_b1
+    assert ok_w2
+    assert ok_b2
 
 
 def test_linear_layer() -> None:

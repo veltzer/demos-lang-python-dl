@@ -12,7 +12,8 @@ from types import ModuleType
 def load(path: str) -> ModuleType:
     p = Path(__file__).parent.parent / path
     spec = importlib.util.spec_from_file_location(p.stem, p)
-    assert spec is not None and spec.loader is not None
+    assert spec is not None
+    assert spec.loader is not None
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
