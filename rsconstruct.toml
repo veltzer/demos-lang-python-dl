@@ -41,6 +41,11 @@ src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 # Runtime deps: this is a deep-learning demo/exercise repo whose tests import
 # the full stack. Heavy to install but required -- pytest imports torch etc.
 
+# lint the YAML files with yamllint (policy: .yamllint.yaml)
+[processor.checker.iyamllint]
+src_dirs = [".github"]
+src_files = [".yamllint.yaml"]
+
 # lint the GitHub Actions workflow files with actionlint
 [processor.checker.iactionlint]
 src_dirs = [".github/workflows"]
