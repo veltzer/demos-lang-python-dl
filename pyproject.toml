@@ -33,17 +33,6 @@ search-path = [
     "src",
     ".",
 ]
-# Third-party libraries without type information.
-ignore-missing-imports = [
-    "datasets.*",
-    "flax.*",
-    "jax.*",
-    "keras.*",
-    "tensorflow.*",
-    "torch.*",
-    "torchvision.*",
-    "transformers.*",
-]
 
 [tool.pyrefly.errors]
 no-any-return = "error"
