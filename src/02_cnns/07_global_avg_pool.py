@@ -9,7 +9,7 @@ from torch import nn
 def main() -> torch.Tensor:
     x = torch.randn(2, 16, 8, 8)
     pool = nn.AdaptiveAvgPool2d(1)
-    y = pool(x).squeeze(-1).squeeze(-1)
+    y: torch.Tensor = pool(x).squeeze(-1).squeeze(-1)
     print(y.shape)
     return y
 

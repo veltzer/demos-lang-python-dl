@@ -7,7 +7,7 @@ from transformers import pipeline
 
 def main() -> dict:
     clf = pipeline("zero-shot-classification")
-    out = clf(
+    out: dict = clf(
         "I am planning my next trip to Tokyo.",
         candidate_labels=["travel", "cooking", "politics"],
     )

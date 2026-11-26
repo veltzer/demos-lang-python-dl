@@ -21,7 +21,7 @@ def main() -> torch.Tensor:
     x = emb(ids)
     mask = torch.triu(torch.ones(10, 10), diagonal=1).bool()
     out = encoder(x, mask=mask)
-    logits = head(out)
+    logits: torch.Tensor = head(out)
     print(logits.shape)
     return logits
 

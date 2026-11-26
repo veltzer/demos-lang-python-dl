@@ -13,7 +13,8 @@ class TwoLayerNet(nn.Module):
         self.linear2 = nn.Linear(hidden, out_dim)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.linear2(torch.relu(self.linear1(x)))
+        out: torch.Tensor = self.linear2(torch.relu(self.linear1(x)))
+        return out
 
 
 def main() -> tuple[TwoLayerNet, torch.Tensor]:

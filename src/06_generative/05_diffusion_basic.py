@@ -19,7 +19,8 @@ class EpsNet(nn.Module):
         )
 
     def forward(self, x_t: torch.Tensor, t_idx: torch.Tensor) -> torch.Tensor:
-        return self.net(torch.cat([x_t, t_idx.float() / T], dim=1))
+        noise: torch.Tensor = self.net(torch.cat([x_t, t_idx.float() / T], dim=1))
+        return noise
 
 
 def main() -> float:

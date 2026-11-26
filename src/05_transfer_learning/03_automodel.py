@@ -16,7 +16,8 @@ def main() -> torch.Tensor:
         outputs = model(**inputs)
 
     print(outputs.last_hidden_state.shape)
-    return outputs.last_hidden_state
+    hidden: torch.Tensor = outputs.last_hidden_state
+    return hidden
 
 
 if __name__ == "__main__":

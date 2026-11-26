@@ -15,7 +15,7 @@ def main() -> torch.Tensor:
     encoder = nn.TransformerEncoder(layer, num_layers=3)
 
     x = torch.randn(3, 8, 16)
-    out = encoder(x)
+    out: torch.Tensor = encoder(x)
     print(out.shape)
     return out
 

@@ -12,7 +12,7 @@ def f(x: float) -> float:
 
 def main() -> jnp.ndarray:
     df = jax.grad(f)
-    result = df(3.0)
+    result: jnp.ndarray = df(3.0)
     print(result)
     return result
 

@@ -16,7 +16,8 @@ class Model(nn.Module):
 
     def forward(self, inp: torch.Tensor) -> torch.Tensor:
         out, _ = self.lstm(inp)
-        return self.head(out[:, -1])
+        last: torch.Tensor = self.head(out[:, -1])
+        return last
 
 
 def main() -> tuple[Model, float]:

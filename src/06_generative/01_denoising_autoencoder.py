@@ -23,7 +23,7 @@ def main() -> float:
         opt.step()
 
     with torch.no_grad():
-        clean_loss = loss_fn(model(x), x).item()
+        clean_loss: float = loss_fn(model(x), x).item()
     print("denoising loss on clean input:", clean_loss)
     return clean_loss
 

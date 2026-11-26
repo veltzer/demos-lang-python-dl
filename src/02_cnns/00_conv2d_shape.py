@@ -11,7 +11,7 @@ def main() -> torch.Size:
 
     conv = nn.Conv2d(3, 8, kernel_size=3, padding=1)
     x = torch.randn(2, 3, 32, 32)
-    out = conv(x)
+    out: torch.Tensor = conv(x)
     print(out.shape)
     return out.shape
 

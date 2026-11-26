@@ -12,7 +12,7 @@ def f(v: torch.Tensor) -> torch.Tensor:
 
 def main() -> torch.Tensor:
     x = torch.tensor([2.0, 3.0])
-    j = jacobian(f, x)
+    j: torch.Tensor = jacobian(f, x)
     print(j)
     return j
 

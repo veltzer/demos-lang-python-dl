@@ -9,7 +9,7 @@ from torch import nn
 def main() -> torch.Tensor:
     up = nn.ConvTranspose2d(8, 4, kernel_size=2, stride=2)
     x = torch.randn(1, 8, 4, 4)
-    y = up(x)
+    y: torch.Tensor = up(x)
     print(y.shape)
     return y
 
