@@ -36,7 +36,7 @@ src_dirs = ["src", "tests"]
 src_dirs = ["tests"]
 
 [processor.checker.taplo]
-src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
+src_files = [".ruff.toml", ".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
 # Runtime deps: this is a deep-learning demo/exercise repo whose tests import
 # the full stack. Heavy to install but required -- pytest imports torch etc.
