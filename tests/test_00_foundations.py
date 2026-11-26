@@ -3,11 +3,14 @@
 import importlib.util
 import math
 from pathlib import Path
-from types import ModuleType
+from typing import TYPE_CHECKING
 
 import pytest
 import torch
 from torch import nn
+
+if TYPE_CHECKING:
+    from types import ModuleType
 
 
 def _load(path: str) -> ModuleType:

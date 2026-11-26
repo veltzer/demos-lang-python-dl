@@ -6,7 +6,10 @@ Stochastic models use loose tolerances (see comments per test).
 import importlib.util
 import math
 from pathlib import Path
-from types import ModuleType
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from types import ModuleType
 
 
 def load(path: str) -> ModuleType:

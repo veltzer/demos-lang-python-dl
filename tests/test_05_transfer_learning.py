@@ -6,9 +6,12 @@ and is skipped unless pytest is run with `-m network`.
 
 import importlib.util
 from pathlib import Path
-from types import ModuleType
+from typing import TYPE_CHECKING
 
 import pytest
+
+if TYPE_CHECKING:
+    from types import ModuleType
 
 
 def load(path: str) -> ModuleType:
