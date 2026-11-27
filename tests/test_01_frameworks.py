@@ -175,21 +175,21 @@ def test_train_test_split() -> None:
 
 
 
-def test_00_tf_tensor():
+def test_00_tf_tensor() -> None:
     pytest.importorskip("tensorflow")
     mod = load("src/01_frameworks/17_tf_tensor.py")
     t = mod.main()
     assert tuple(t.shape) == (5,)
 
 
-def test_01_keras_sequential():
+def test_01_keras_sequential() -> None:
     pytest.importorskip("keras")
     mod = load("src/01_frameworks/18_keras_sequential.py")
     model = mod.main()
     assert len(model.layers) == 3
 
 
-def test_02_compile_fit():
+def test_02_compile_fit() -> None:
     pytest.importorskip("keras")
     mod = load("src/01_frameworks/19_compile_fit.py")
     _model, history = mod.main()
@@ -197,28 +197,28 @@ def test_02_compile_fit():
     assert len(history.history["loss"]) == 5
 
 
-def test_03_functional_api():
+def test_03_functional_api() -> None:
     pytest.importorskip("keras")
     mod = load("src/01_frameworks/20_functional_api.py")
     model = mod.main()
     assert len(model.inputs) == 2
 
 
-def test_04_cnn_keras():
+def test_04_cnn_keras() -> None:
     pytest.importorskip("keras")
     mod = load("src/01_frameworks/21_cnn_keras.py")
     model = mod.main()
     assert model.output_shape == (None, 10)
 
 
-def test_05_save_load():
+def test_05_save_load() -> None:
     pytest.importorskip("keras")
     mod = load("src/01_frameworks/22_save_load_keras.py")
     same = mod.main()
     assert same is True
 
 
-def test_06_gradient_tape():
+def test_06_gradient_tape() -> None:
     pytest.importorskip("tensorflow")
     mod = load("src/01_frameworks/23_gradient_tape.py")
     grad = mod.main()
@@ -227,34 +227,34 @@ def test_06_gradient_tape():
 
 
 
-def test_00_jnp_basics():
+def test_00_jnp_basics() -> None:
     mod = load("src/01_frameworks/24_jnp_basics.py")
     doubled, total = mod.main()
     assert jnp.allclose(doubled, jnp.array([2.0, 4.0, 6.0]))
     assert float(total) == pytest.approx(6.0)
 
 
-def test_01_grad():
+def test_01_grad() -> None:
     mod = load("src/01_frameworks/25_grad.py")
     g = mod.main()
     # d/dx (x^3 + 2x) at x=3 is 3*9 + 2 = 29
     assert float(g) == pytest.approx(29.0)
 
 
-def test_02_jit():
+def test_02_jit() -> None:
     mod = load("src/01_frameworks/26_jit.py")
     result = mod.main()
     # sum_{k=0}^{999} sin(k)^2 ≈ 500
     assert float(result) == pytest.approx(500.0, abs=5.0)
 
 
-def test_03_vmap():
+def test_03_vmap() -> None:
     mod = load("src/01_frameworks/27_vmap.py")
     out = mod.main()
     assert out.shape == (5,)
 
 
-def test_04_prng():
+def test_04_prng() -> None:
     mod = load("src/01_frameworks/28_prng.py")
     s1, s2, s3 = mod.main()
     assert s1.shape == (2, 2)
@@ -265,13 +265,13 @@ def test_04_prng():
     assert not jnp.allclose(s2, s3)
 
 
-def test_05_flax_linen():
+def test_05_flax_linen() -> None:
     mod = load("src/01_frameworks/29_flax_linen.py")
     _model, _params, out = mod.main()
     assert out.shape == (4, 3)
 
 
-def test_06_train_step():
+def test_06_train_step() -> None:
     mod = load("src/01_frameworks/30_train_step.py")
     _params, final_loss = mod.main()
     # Should fit a perfect linear y = 2x + 1 well below 1.0

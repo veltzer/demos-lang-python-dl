@@ -27,7 +27,7 @@ def load(path: str) -> ModuleType:
 pytestmark = pytest.mark.network
 
 
-def test_00_sentiment_pipeline():
+def test_00_sentiment_pipeline() -> None:
     mod = load("src/05_transfer_learning/00_sentiment_pipeline.py")
     results = mod.main()
     assert len(results) == 2
@@ -36,7 +36,7 @@ def test_00_sentiment_pipeline():
         assert "label" in out[0]
 
 
-def test_01_zero_shot():
+def test_01_zero_shot() -> None:
     mod = load("src/05_transfer_learning/01_zero_shot.py")
     out = mod.main()
     assert "labels" in out
@@ -44,7 +44,7 @@ def test_01_zero_shot():
     assert set(out["labels"]) == {"travel", "cooking", "politics"}
 
 
-def test_02_tokenizer():
+def test_02_tokenizer() -> None:
     mod = load("src/05_transfer_learning/02_tokenizer.py")
     ids, tokens = mod.main()
     assert len(ids) == len(tokens)
@@ -52,14 +52,14 @@ def test_02_tokenizer():
     assert tokens[-1] == "[SEP]"
 
 
-def test_03_automodel():
+def test_03_automodel() -> None:
     mod = load("src/05_transfer_learning/03_automodel.py")
     h = mod.main()
     assert h.shape[0] == 1
     assert h.shape[-1] == 768  # bert-base hidden size
 
 
-def test_04_text_generation():
+def test_04_text_generation() -> None:
     mod = load("src/05_transfer_learning/04_text_generation.py")
     out = mod.main()
     assert isinstance(out, list)
@@ -67,19 +67,19 @@ def test_04_text_generation():
     assert "generated_text" in out[0]
 
 
-def test_05_datasets_basic():
+def test_05_datasets_basic() -> None:
     mod = load("src/05_transfer_learning/05_datasets_basic.py")
     ds = mod.main()
     assert "train" in ds
 
 
-def test_06_map_tokenize():
+def test_06_map_tokenize() -> None:
     mod = load("src/05_transfer_learning/06_map_tokenize.py")
     _ds, keys = mod.main()
     assert "input_ids" in keys
 
 
-def test_07_finetune_head():
+def test_07_finetune_head() -> None:
     mod = load("src/05_transfer_learning/07_finetune_head.py")
     losses, backbone_frozen = mod.main()
     assert backbone_frozen

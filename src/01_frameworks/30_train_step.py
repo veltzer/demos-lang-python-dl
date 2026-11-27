@@ -2,11 +2,14 @@
 
 """Train a Flax model with raw jax.grad + manual SGD."""
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import jax
 import jax.numpy as jnp
 from flax import linen as nn
+
+if TYPE_CHECKING:
+    from jax._src.basearray import Array
 
 
 class Linear(nn.Module):
@@ -25,8 +28,8 @@ def main() -> tuple[Any, Any]:
     model = Linear()
     params = model.init(init_key, x)
 
-    def loss_fn(p, inp, target):
-        pred = model.apply(p, inp)
+    def loss_fn(p: Any, inp: Array, target: Array) -> Array:
+        pred: Any = model.apply(p, inp)
         return jnp.mean((pred - target) ** 2)
 
     grad_fn = jax.jit(jax.grad(loss_fn))

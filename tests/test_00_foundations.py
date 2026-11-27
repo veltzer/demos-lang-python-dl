@@ -232,7 +232,7 @@ def test_weight_decay() -> None:
 
 
 
-def test_00_dropout():
+def test_00_dropout() -> None:
     mod = load("src/00_foundations/24_dropout.py")
     t1, t2, e1, e2 = mod.main()
     # Train mode is stochastic -> outputs differ; eval mode is deterministic.
@@ -240,28 +240,28 @@ def test_00_dropout():
     assert torch.allclose(e1, e2)
 
 
-def test_01_layernorm():
+def test_01_layernorm() -> None:
     mod = load("src/00_foundations/25_layernorm.py")
     means, stds = mod.main()
     assert torch.allclose(means, torch.zeros_like(means), atol=1e-5)
     assert torch.allclose(stds, torch.ones_like(stds), atol=1e-4)
 
 
-def test_02_grad_clipping():
+def test_02_grad_clipping() -> None:
     mod = load("src/00_foundations/26_grad_clipping.py")
     before, after = mod.main()
     assert before > 1e5
     assert after == pytest.approx(1.0, abs=1e-5)
 
 
-def test_03_early_stopping():
+def test_03_early_stopping() -> None:
     mod = load("src/00_foundations/27_early_stopping.py")
     stopped_at, best = mod.main()
     assert stopped_at > 0
     assert best < float("inf")
 
 
-def test_04_weight_init():
+def test_04_weight_init() -> None:
     mod = load("src/00_foundations/28_weight_init.py")
     results = mod.main()
     assert set(results) == {"normal(0, 0.01)", "xavier_normal", "kaiming_normal"}
@@ -273,14 +273,14 @@ def test_04_weight_init():
     assert 0.05 < results["kaiming_normal"] < 0.25
 
 
-def test_05_overfit_small_batch():
+def test_05_overfit_small_batch() -> None:
     mod = load("src/00_foundations/29_overfit_small_batch.py")
     final_loss = mod.main()
     # Should drive loss near zero on 8 samples
     assert final_loss < 0.05
 
 
-def test_06_label_smoothing():
+def test_06_label_smoothing() -> None:
     mod = load("src/00_foundations/30_label_smoothing.py")
     plain, smooth = mod.main()
     # Label smoothing raises the loss on a confident-correct prediction

@@ -22,26 +22,26 @@ def load(path: str) -> ModuleType:
     return mod
 
 
-def test_00_autoencoder():
+def test_00_autoencoder() -> None:
     mod = load("src/06_generative/00_autoencoder.py")
     final_loss = mod.main()
     # 200x8 random data, bottleneck-2 -> nonzero floor, but should fall well below 1.0
     assert final_loss < 1.0
 
 
-def test_01_denoising_autoencoder():
+def test_01_denoising_autoencoder() -> None:
     mod = load("src/06_generative/01_denoising_autoencoder.py")
     clean_loss = mod.main()
     assert clean_loss < 1.0
 
 
-def test_02_vae():
+def test_02_vae() -> None:
     mod = load("src/06_generative/02_vae.py")
     final_loss = mod.main()
     assert final_loss < 2.0
 
 
-def test_03_gan_basic():
+def test_03_gan_basic() -> None:
     """Tiny 1-D GAN — very flaky; use loose tolerances per task instructions."""
     mod = load("src/06_generative/03_gan_basic.py")
     mean, std = mod.main()
@@ -50,7 +50,7 @@ def test_03_gan_basic():
     assert abs(std - 1.0) < 1.0
 
 
-def test_04_normalizing_flow():
+def test_04_normalizing_flow() -> None:
     """Affine flow should learn s ≈ log(2), t ≈ 3."""
     mod = load("src/06_generative/04_normalizing_flow.py")
     s, t = mod.main()
@@ -58,7 +58,7 @@ def test_04_normalizing_flow():
     assert abs(t - 3.0) < 0.5
 
 
-def test_05_diffusion_basic():
+def test_05_diffusion_basic() -> None:
     mod = load("src/06_generative/05_diffusion_basic.py")
     final_loss = mod.main()
     # Final-step loss on a single batch is noisy but the average should be < 1.0
