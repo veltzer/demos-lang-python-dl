@@ -2,6 +2,8 @@
 
 """Tiny denoising diffusion model on 1-D N(5, 1) data."""
 
+from typing import override
+
 import torch
 from torch import nn
 
@@ -18,6 +20,7 @@ class EpsNet(nn.Module):
             nn.Linear(32, 1),
         )
 
+    @override
     def forward(self, x_t: torch.Tensor, t_idx: torch.Tensor) -> torch.Tensor:
         noise: torch.Tensor = self.net(torch.cat([x_t, t_idx.float() / T], dim=1))
         return noise

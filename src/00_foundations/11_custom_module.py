@@ -2,6 +2,8 @@
 
 """Custom nn.Module subclass."""
 
+from typing import override
+
 import torch
 from torch import nn
 
@@ -12,6 +14,7 @@ class TwoLayerNet(nn.Module):
         self.linear1 = nn.Linear(in_dim, hidden)
         self.linear2 = nn.Linear(hidden, out_dim)
 
+    @override
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         out: torch.Tensor = self.linear2(torch.relu(self.linear1(x)))
         return out

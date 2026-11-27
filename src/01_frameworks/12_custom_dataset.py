@@ -2,6 +2,8 @@
 
 """Custom Dataset subclass."""
 
+from typing import override
+
 import torch
 from torch.utils.data import DataLoader, Dataset
 
@@ -13,6 +15,7 @@ class SquaresDataset(Dataset):
     def __len__(self) -> int:
         return self.n
 
+    @override
     def __getitem__(self, index: int) -> tuple[torch.Tensor, torch.Tensor]:
         return torch.tensor(index), torch.tensor(index * index)
 

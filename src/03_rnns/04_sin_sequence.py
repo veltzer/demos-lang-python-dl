@@ -3,6 +3,7 @@
 """Forecast next value of a sine wave with an LSTM."""
 
 import math
+from typing import override
 
 import torch
 from torch import nn
@@ -14,6 +15,7 @@ class Model(nn.Module):
         self.lstm = nn.LSTM(1, 16, batch_first=True)
         self.head = nn.Linear(16, 1)
 
+    @override
     def forward(self, inp: torch.Tensor) -> torch.Tensor:
         out, _ = self.lstm(inp)
         last: torch.Tensor = self.head(out[:, -1])

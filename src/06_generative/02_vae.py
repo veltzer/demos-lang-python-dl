@@ -2,6 +2,8 @@
 
 """A minimal variational autoencoder."""
 
+from typing import override
+
 import torch
 from torch import nn
 
@@ -13,6 +15,7 @@ class VAE(nn.Module):
         self.dec = nn.Linear(latent, in_dim)
         self.latent = latent
 
+    @override
     def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         h = self.enc(x)
         mu, logvar = h[:, :self.latent], h[:, self.latent:]
