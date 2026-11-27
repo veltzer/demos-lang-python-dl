@@ -31,9 +31,13 @@ def main() -> tuple[Any, Any]:
 
     grad_fn = jax.jit(jax.grad(loss_fn))
     lr = 0.01
+
+    def step(p: jax.Array, g: jax.Array) -> jax.Array:
+        return p - lr * g
+
     for _ in range(500):
         grads = grad_fn(params, x, y)
-        params = jax.tree_util.tree_map(lambda p, g: p - lr * g, params, grads)
+        params = jax.tree_util.tree_map(step, params, grads)
 
     final_loss = loss_fn(params, x, y)
     print(final_loss)
