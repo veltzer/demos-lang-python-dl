@@ -2,12 +2,14 @@
 
 """Zero-shot classification with no fine-tuning."""
 
+from typing import Any
+
 from transformers import pipeline
 
 
-def main() -> dict:
+def main() -> dict[str, Any]:
     clf = pipeline("zero-shot-classification")
-    out: dict = clf(
+    out: dict[str, Any] = clf(
         "I am planning my next trip to Tokyo.",
         candidate_labels=["travel", "cooking", "politics"],
     )

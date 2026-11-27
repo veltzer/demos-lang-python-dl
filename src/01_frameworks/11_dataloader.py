@@ -6,7 +6,7 @@ import torch
 from torch.utils.data import DataLoader, TensorDataset
 
 
-def main() -> tuple[DataLoader, list[tuple[torch.Tensor, torch.Tensor]]]:
+def main() -> tuple[DataLoader[tuple[torch.Tensor, ...]], list[tuple[torch.Tensor, torch.Tensor]]]:
     torch.manual_seed(0)
     ds = TensorDataset(torch.randn(100, 4), torch.randint(0, 3, (100,)))
     loader = DataLoader(ds, batch_size=16, shuffle=True)

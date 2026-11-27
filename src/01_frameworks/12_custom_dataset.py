@@ -8,7 +8,7 @@ import torch
 from torch.utils.data import DataLoader, Dataset
 
 
-class SquaresDataset(Dataset):
+class SquaresDataset(Dataset[tuple[torch.Tensor, torch.Tensor]]):
     def __init__(self, n: int) -> None:
         self.n = n
 
