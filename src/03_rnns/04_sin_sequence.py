@@ -29,7 +29,8 @@ def main() -> tuple[Model, float]:
     y = torch.sin(t)
 
     window = 20
-    xs, ys = [], []
+    xs: list[torch.Tensor] = []
+    ys: list[torch.Tensor] = []
     for i in range(len(y) - window):
         xs.append(y[i:i + window])
         ys.append(y[i + window])
