@@ -68,7 +68,7 @@ def test_zero_grad() -> None:
 def test_jacobian() -> None:
     mod = _load("src/00_foundations/05_jacobian.py")
     j = mod.main()
-    # x=[2,3]; f = [x0^2, x0*x1, x1^3]
+    # x=[2,3]; f = [x0^2, x0*x1, x1^3]  # noqa: ERA001  not code: an example of the value, written out
     # Jacobian: [[2x0, 0], [x1, x0], [0, 3x1^2]] = [[4,0],[3,2],[0,27]]
     expected = torch.tensor([[4.0, 0.0], [3.0, 2.0], [0.0, 27.0]])
     assert torch.allclose(j, expected)
@@ -141,7 +141,7 @@ def test_count_parameters() -> None:
     # Linear(20,100): 20*100 + 100 = 2100
     # Linear(100,50): 100*50 + 50 = 5050
     # Linear(50,10): 50*10 + 10 = 510
-    # total = 7660
+    # total = 7660  # noqa: ERA001  not code: an example of the value, written out
     assert total == 7660
 
 
